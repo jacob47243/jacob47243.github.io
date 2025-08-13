@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Robotics Demo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style.css" />
+    <style>
+      body.demo { display:block; min-height:100vh; background:#0b0b0c; }
+      /* make the canvas fill the viewport */
+      html, body, #app { height:100%; }
+      /* keep your side panel styling from style.css */
+    </style>
+  </head>
+  <body class="demo">
+
+    <!-- Three.js mount point -->
+    <div id="app"></div>
+
+    <!-- Your existing panel for the demo -->
+    <div id="side-panel">
+      <h2>Task Details</h2>
+      <p>This could be instructions, stats, etc.</p>
+    </div>
+
+    <!-- IMPORTANT: keep absolute path so Vite finds it -->
+    <script type="module" src="/src/main.js"></script>
+
+    <script>
+        // If /demo.html?embed=1, tag the document so shared CSS can hide fixed UI
+        if (new URLSearchParams(location.search).has('embed')) {
+          document.documentElement.classList.add('embedded');
+        }
+      </script>
+      
+  </body>
+</html>
