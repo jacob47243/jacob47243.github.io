@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<robot name="irb5400_minimal">
+
+  <!-- ─── Materials ─────────────────────────────────────── -->
+  <material name="grey"><color rgba="0.6 0.6 0.6 1"/></material>
+  <material name="blue"><color rgba="0.1 0.4 0.8 1"/></material>
+
+  <!-- ─── Links ─────────────────────────────────────────── -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
+      <geometry><box size="0.30 0.30 0.10"/></geometry>
+      <material name="grey"/>
+    </visual>
+    <inertial>
+      <mass value="5"/>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
+      <inertia ixx="0.02" iyy="0.02" izz="0.02" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <!-- identical pattern for each moving link -->
+  <link name="link_1">
+    <visual>
+      <origin xyz="0 0 0.20" rpy="0 0 0"/>
+      <geometry><box size="0.12 0.12 0.40"/></geometry>
+      <material name="blue"/>
+    </visual>
+    <inertial>
+      <mass value="2"/>
+      <origin xyz="0 0 0.20" rpy="0 0 0"/>
+      <inertia ixx="0.005" iyy="0.005" izz="0.002" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <link name="link_2">
+    <visual>
+      <origin xyz="0 0 0.35" rpy="0 0 0"/>
+      <geometry><box size="0.10 0.10 0.70"/></geometry>
+      <material name="blue"/>
+    </visual>
+    <inertial>
+      <mass value="2"/>
+      <origin xyz="0 0 0.35" rpy="0 0 0"/>
+      <inertia ixx="0.006" iyy="0.006" izz="0.003" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <link name="link_3">
+    <visual>
+      <origin xyz="0 0 0.40" rpy="0 0 0"/>
+      <geometry><box size="0.10 0.10 0.80"/></geometry>
+      <material name="blue"/>
+    </visual>
+    <inertial>
+      <mass value="1.5"/>
+      <origin xyz="0 0 0.40" rpy="0 0 0"/>
+      <inertia ixx="0.004" iyy="0.004" izz="0.002" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <link name="link_4">
+    <visual>
+      <origin xyz="0 0 0.10" rpy="0 0 0"/>
+      <geometry><box size="0.2 0.2 0.20"/></geometry>
+      <material name="blue"/>
+    </visual>
+    <inertial>
+      <mass value="1"/>
+      <origin xyz="0 0 0.10" rpy="0 0 0"/>
+      <inertia ixx="0.002" iyy="0.002" izz="0.001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <!-- ─── Joints (names, axes, origins, limits unchanged) ───────────────── -->
+
+  <joint name="joint1" type="revolute">
+    <parent link="base_link"/>
+    <child  link="link_1"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis  xyz="0 0 1"/>
+    <limit lower="-6.2831" upper="6.2831" effort="300" velocity="2.5"/>
+  </joint>
+
+  <joint name="joint2" type="revolute">
+    <parent link="link_1"/>
+    <child  link="link_2"/>
+    <origin xyz="0 0 0.58" rpy="0 0 0"/>
+    <axis  xyz="0 1 0"/>
+    <limit lower="0.05" upper="3.1416" effort="300" velocity="2.5"/>
+  </joint>
+
+  <joint name="joint3" type="revolute">
+    <parent link="link_2"/>
+    <child  link="link_3"/>
+    <origin xyz="0 0 1.2" rpy="0 0 0"/>
+    <axis  xyz="0 1 0"/>
+    <limit lower="-2.3562" upper="1.3963" effort="300" velocity="2.5"/>
+  </joint>
+
+  <joint name="joint4" type="fixed">
+    <parent link="link_3"/>
+    <child  link="link_4"/>
+    <origin xyz="0 0 1.5" rpy="0 0 0"/>   <!-- move to distal tip -->
+  </joint>
+
+</robot>

@@ -1,0 +1,616 @@
+/* :root{
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+               Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+               "Segoe UI Emoji", "Segoe UI Symbol";
+} */
+
+/* Font stacks */
+:root{
+  --font-sans: "Helvetica Neue", Calibri, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-heading: "Saira Semi Condensed", Calibri, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* already present in your file; this will now use Rubik Bubbles */
+html, body { font-family: var(--font-sans); }
+h1, h2, h3, h4, h5, h6,
+.site-title,
+.site-header .nav-link {
+  font-family: var(--font-heading);
+  letter-spacing: .2px;
+  font-weight: 400; /* Rubik Bubbles is a single weight */
+}
+
+
+/* Optional: weight polish */
+.site-title { font-weight: 800; }
+h1 { font-weight: 800; }
+h2, h3 { font-weight: 700; }
+.site-header .nav-link { font-weight: 600; }
+
+
+:root { --accent: #14b8a6; }
+a { color: var(--accent); }
+a:hover { color: #0d9488; }
+
+/* Teal pill buttons: white text on hover */
+.top-left-btn:hover {
+  color: #fff !important;
+}
+
+
+
+:root {
+    line-height: 1.5;
+    font-weight: 400;
+  
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  a:hover {
+    color: #535bf2;
+  }
+  
+  body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+  }
+  
+  h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+  }
+  
+  #app {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+  }
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+  .logo.vanilla:hover {
+    filter: drop-shadow(0 0 2em #f7df1eaa);
+  }
+  
+  .card {
+    padding: 2em;
+  }
+  
+  .read-the-docs {
+    color: #888;
+  }
+  
+  button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  button:hover {
+    border-color: #646cff;
+  }
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+  
+  @media (prefers-color-scheme: light) {
+    :root {
+      color: #213547;
+      background-color: #ffffff;
+    }
+    a:hover {
+      color: #747bff;
+    }
+    button {
+      background-color: #f9f9f9;
+    }
+  }
+  
+  /* add or override in style.css */
+  #app {
+    width:100%;
+    height:100%;
+    max-width:none;   /* disable the 1280-px cap */
+    margin:0;
+    padding:0;
+  }
+  
+  
+  #side-panel {
+    position: fixed;
+    /* ── keep it docked on the right but inset a little ── */
+    top: calc(var(--header-h, 64px) + 16px);
+    right: 2vw;        /* 2 % gap from screen edge */
+    bottom: 4vh;       /* 4 % gap below */
+  
+    /* ── overall size ──────────────────────────────────── */
+    width: 36vw;       /* smaller than the 40 % strip you reserved */
+    min-width: 320px;  /* don’t collapse on narrow screens */
+  
+    /* ── slide-in motion ───────────────────────────────── */
+    transform: translateX(calc(100% + 2vw));  /* start off-screen + gap */
+    transition: transform 0.4s ease;
+  
+    /* ── visual style ──────────────────────────────────── */
+    background: #161616;          /* opaque dark panel */
+    color: #f5f5f5;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.6);
+  
+    /* inner scrolling */
+    padding: 24px;
+    overflow-y: auto;
+  
+    z-index: 10;       /* above the canvas */
+  }
+  
+  /* slide in */
+  #side-panel.open {
+    transform: translateX(0);
+  }
+  
+  
+  
+  #side-panel.open {
+    transform: translateX(0);     /* slide in */
+  }
+
+  /* --- Top-left travel button --- */
+.top-left-btn {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 30;                 /* above side-panel (z-index:10) and canvas */
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+}
+@media (prefers-color-scheme: light) {
+  .top-left-btn {
+    background: rgba(255,255,255,0.85);
+    color: #213547;
+    border-color: rgba(0,0,0,0.1);
+  }
+}
+.top-left-btn:hover { transform: translateY(-1px); }
+.top-left-btn:active { transform: translateY(0); }
+
+  
+/* --- Home page layout overrides --- */
+body.home {
+  display: block;           /* cancel the global flex centering */
+  place-items: initial;
+  min-height: auto;
+}
+
+/* Make sure the header actually sticks to the top */
+.home .site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+
+/* --- Force Projects into a 2x2 grid on desktop --- */
+#projects .card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));  /* 2 columns */
+  gap: 16px;
+}
+
+#experience .card-grid { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:18px; }
+@media (max-width: 800px){ #experience .card-grid { grid-template-columns: 1fr; } }
+
+
+/* Mobile fallback: single column */
+@media (max-width: 800px) {
+  #projects .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Button normalization --- */
+/* Make .top-left-btn a normal inline pill everywhere */
+.top-left-btn{
+  position: static;            /* override old fixed rule */
+  inset: auto;                 /* reset any top/left */
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: var(--accent, #14b8a6);
+  color: #042f2e;
+  font-weight: 700;
+  text-decoration: none;
+}
+.top-left-btn:hover{ filter: brightness(1.05); }
+
+/* Only fix it to the top-left on the DEMO page */
+body.demo .top-left-btn{
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 30;
+}
+
+
+/* Kill snap only during the very first paint on Home */
+body.home.first-load main { scroll-snap-type: none !important; }
+
+
+/* Stop browser’s scroll “anchoring” from nudging to later sections */
+body.home main { overflow-anchor: none; }
+
+body.home main { scroll-snap-type: none !important; }
+
+.pub-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.pub-list .card { padding: 18px; }
+.pub-list a { text-decoration: underline; }
+
+.site-title{ font-size: clamp(40px, 8vw, 72px); margin: 0 0 6px; letter-spacing: .2px; }
+.site-kicker{ margin:0 0 14px; color: var(--muted); font-size: clamp(16px, 2.4vw, 20px); }
+.lead{ font-size: clamp(18px, 2.2vw, 22px); margin: 0 0 10px; }
+
+
+/* Inline PDF viewer tweaks (override pdf_viewer.css defaults) */
+#resume .viewerContainer {
+  width: 100%;
+  max-width: 1000px;     /* adjust to taste */
+  margin: 0 auto;
+  height: auto;          /* not a full-screen scroller */
+  overflow: visible;     /* allow page height to define the flow */
+  background: transparent;
+  padding: 0;
+}
+
+#resume .pdfViewer .page {
+  margin: 0 auto 16px;
+  border: 1px solid rgba(20,184,166,.35);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.35);
+  background: #0f1113;
+}
+
+/* Sharper text rendering on dark bg */
+#resume .textLayer {
+  mix-blend-mode: normal;
+}
+
+/* Hide selection highlight “ghosting” edges on dark mode */
+#resume .textLayer ::selection {
+  background: rgba(20,184,166,.35);
+}
+
+/* Ensure the inner pdfViewer div expands to container width */
+#resume .pdfViewer { width: 100%; }
+
+.about-inline{ margin-top: 6px; margin-bottom: 16px; }
+
+/* --- Inline robotics demo window --- */
+/* Inline robotics demo window (kept) */
+.demo-embed { position: relative; width: 100%; max-width: 1100px; margin: 10px auto 18px;
+  border-radius: 14px; border: 1px solid rgba(20,184,166,.35); background: #0f1113;
+  box-shadow: 0 12px 40px rgba(0,0,0,.35); aspect-ratio: 16/9; min-height: 360px; overflow: hidden;
+}
+.demo-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+.demo-actions { position: absolute; top: 10px; right: 10px; display: flex; gap: 8px; z-index: 2; }
+
+/* Make the action buttons look exactly like the teal CTA */
+.demo-actions .top-left-btn {
+  padding: 8px 12px;         /* slightly tighter than big CTA */
+  border-radius: 10px;
+}
+
+/* Keep hover text white (you already added this globally) */
+.top-left-btn:hover { color: #fff !important; }
+
+
+/* shared */
+.scrim{
+  position: fixed; inset: 0; background: rgba(0,0,0,.45);
+  backdrop-filter: blur(8px);
+  opacity: 0; pointer-events: none; transition: opacity .25s ease;
+  z-index: 60;
+}
+.no-scroll{ overflow:hidden; }
+
+/* ── Drawer ───────────────────────────────────────────── */
+.drawer{ position: fixed; inset: 0; z-index: 60; pointer-events:none; }
+.drawer[aria-hidden="false"] .scrim{ opacity: 1; pointer-events:auto; }
+.drawer__panel{
+  position: fixed; top: 0; right: 0; height: 100%; width: min(520px, 92vw);
+  background: #121315; border-left: 1px solid rgba(255,255,255,.08);
+  box-shadow: -20px 0 60px rgba(0,0,0,.4);
+  transform: translateX(100%); transition: transform .28s ease;
+  z-index: 61; display:flex; flex-direction:column;
+}
+.drawer[aria-hidden="false"] .drawer__panel{ transform: translateX(0); }
+.drawer__close{
+  align-self:flex-end; margin: 12px; width:36px; height:36px;
+  border-radius:10px; border:1px solid rgba(255,255,255,.15);
+  background: rgba(0,0,0,.5); color:#e8e9ea; font-size:18px; font-weight:700;
+}
+.drawer__close:hover{ color:#fff; }
+.drawer__body{ padding: 14px 18px 24px; overflow:auto; }
+.drawer h3{ margin:8px 18px 8px; }
+
+/* ── Modal ────────────────────────────────────────────── */
+.modal{ position: fixed; inset:0; z-index: 70; pointer-events:none; }
+.modal[aria-hidden="false"] .scrim{ opacity: 1; pointer-events:auto; }
+.modal__panel{
+  position: fixed; inset: 0; margin: auto; width: min(900px, 92vw); max-height: min(82vh, 900px);
+  background:#121315; border:1px solid rgba(255,255,255,.08); border-radius:14px;
+  box-shadow: 0 30px 90px rgba(0,0,0,.45);
+  transform: translateY(12px) scale(.98); opacity: 0; transition: transform .25s ease, opacity .25s ease;
+  z-index: 71; display:flex; flex-direction:column;
+}
+.modal[aria-hidden="false"] .modal__panel{ transform: translateY(0) scale(1); opacity:1; pointer-events:auto; }
+.modal__close{
+  align-self:flex-end; margin: 10px; width:36px; height:36px;
+  border-radius:10px; border:1px solid rgba(255,255,255,.15);
+  background: rgba(0,0,0,.5); color:#e8e9ea; font-size:18px; font-weight:700;
+}
+.modal__close:hover{ color:#fff; }
+.modal__body{ padding: 14px 18px 22px; overflow:auto; }
+.modal h3{ margin:6px 18px 8px; }
+
+/* links/buttons inside panels */
+.drawer__body a, .modal__body a { color: var(--accent); }
+.drawer__body a:hover, .modal__body a:hover { color:#fff; }
+
+#detail-modal  h3#modal-title { display: none; }
+
+
+
+/* Clickable halo + stronger affordances for interactive cards */
+.card[role="button"]{
+  position: relative;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+}
+.card[role="button"]:hover,
+.card[role="button"]:focus-visible{
+  border-color: color-mix(in oklab, var(--accent) 60%, transparent);
+  box-shadow: 0 12px 32px rgba(20,184,166,.28);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* Soft teal halo */
+.card[role="button"]::before{
+  content:"";
+  position:absolute; inset:-3px; border-radius:16px;
+  background: radial-gradient(120% 120% at 80% 20%, rgba(20,184,166,.45), rgba(20,184,166,0) 60%);
+  opacity:0; filter: blur(10px);
+  transition: opacity .18s ease, filter .18s ease;
+  pointer-events:none;
+}
+.card[role="button"]:hover::before,
+.card[role="button"]:focus-visible::before{ opacity:1; filter: blur(8px); }
+
+/* Optional: tiny pill hint */
+.card[role="button"]::after{
+  content:"Click to View Details";
+  position:absolute; right:14px; bottom:12px;
+  padding:4px 10px; border-radius:999px; font-size:12px;
+  color:#93f4e5; background:rgba(20,184,166,.10); border:1px solid rgba(20,184,166,.35);
+  opacity:0; transform:translateY(2px);
+  transition: opacity .18s ease, transform .18s ease;
+  pointer-events:none;
+}
+.card[role="button"]:hover::after,
+.card[role="button"]:focus-visible::after{ opacity:1; transform:translateY(0); }
+@media (hover:none){ .card[role="button"]::after{ opacity:.9; } }
+
+
+/* Skills layout */
+.skills-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 24px;
+}
+@media (max-width: 800px){
+  .skills-grid{ grid-template-columns: 1fr; }
+}
+.skills-col h3{
+  margin: 0 0 6px;
+  font-size: clamp(14px, 1.4vw, 16px);
+  color: var(--muted);
+  font-weight: 700;
+}
+.tags{ display:flex; flex-wrap:wrap; gap:8px; margin: 6px 0 4px; }
+
+/* Perfect-center the “×” in close buttons */
+.drawer__close,
+.modal__close{
+  display: inline-grid;        /* grid makes centering trivial */
+  place-items: center;         /* center both axes */
+  width: 36px;
+  height: 36px;
+  padding: 0;                  /* kill default button padding */
+  line-height: 1;              /* no weird baseline */
+  font-size: 18px;             /* size of the × */
+  box-sizing: border-box;
+}
+
+/* Teal thin outline for the close buttons (no background change) */
+.drawer__close,
+.modal__close {
+  border: 1px solid var(--accent) !important;  /* #14b8a6 */
+  background: transparent;                     /* keep background as-is */
+}
+
+/* Optional: focus ring, still no fill */
+.drawer__close:focus-visible,
+.modal__close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent) 45%, transparent);
+}
+
+
+/* ---- Inline PDF viewer layout ---- */
+#resume .pdf-shell{
+  position: relative;          /* anchor for the absolute child */
+  height: 78vh;                /* visible space for the viewer */
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+#resume .viewerContainer{
+  position: absolute;          /* PDFViewer demands absolute */
+  inset: 0;                    /* fill the shell */
+  overflow: auto;              /* scroll pages inside */
+  background: transparent;
+  padding: 0;
+}
+
+#resume .pdfViewer .page{
+  margin: 0 auto 16px;
+  border: 1px solid rgba(20,184,166,.35);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.35);
+  background: #0f1113;
+}
+
+/* optional: sharper selection highlight on dark */
+#resume .textLayer ::selection{ background: rgba(20,184,166,.35); }
+
+/* Contact pills */
+.contact-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:8px;
+}
+.contact-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.15);
+  background: var(--accent);
+  color:#042f2e;
+  font-weight:700;
+  text-decoration:none;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease, color .15s ease;
+}
+.contact-btn:hover{
+  filter: brightness(1.05);
+  color:#fff; /* match your CTA hover */
+  box-shadow: 0 10px 28px rgba(20,184,166,.25);
+  transform: translateY(-1px);
+}
+.contact-btn svg{
+  width:18px; height:18px; fill: currentColor; opacity:.95;
+}
+
+
+/* --- Hero polish (teal-forward) --- */
+.hero{
+  position: relative;
+  overflow: hidden;
+}
+.hero__inner{
+  padding-top: clamp(24px, 8vw, 96px);
+  padding-bottom: clamp(12px, 6vw, 60px);
+}
+
+/* Soft teal glow behind the header text */
+.hero::before{
+  content:"";
+  position:absolute;
+  top:-20%; left:-10%; right:-10%;
+  height: 60%;
+  background: radial-gradient(60% 60% at 20% 30%,
+              rgba(20,184,166,.28) 0%,
+              rgba(20,184,166,.12) 35%,
+              rgba(20,184,166,0) 70%);
+  filter: blur(28px);
+  pointer-events:none;
+}
+
+/* Gradient teal name */
+.hero__name{
+  display:inline-block;
+  background: linear-gradient(180deg, #a7fff5 0%, #14b8a6 45%, #0f766e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: .3px;
+}
+
+/* Underline accent bar */
+.hero__title{
+  margin: 0 0 6px;
+  line-height: 1.05;
+}
+.hero__title::after{
+  content:"";
+  display:block;
+  width: clamp(120px, 22vw, 260px);
+  height: 4px;
+  margin-top: 10px;
+  background: linear-gradient(90deg, #14b8a6, transparent);
+  border-radius: 999px;
+}
+
+
+/* Slightly brighter body copy under the hero */
+.hero__kicker{ margin: 8px 0 8px; }
+.hero__blurb{
+  color: #cfeeee;
+  max-width: 72ch;
+}
+
+
+/* Panel CTA buttons: black text by default, white on hover */
+.drawer__body a.top-left-btn,
+.modal__body a.top-left-btn{
+  color: #000 !important;
+}
+.drawer__body a.top-left-btn:hover,
+.modal__body a.top-left-btn:hover{
+  color: #fff !important;
+}
+
+/* Buttons inside drawer/modal content */
+.drawer__body .btn, .modal__body .btn,
+.drawer__body .top-left-btn, .modal__body .top-left-btn { color:#111 !important; }
+.drawer__body .btn:hover, .modal__body .btn:hover,
+.drawer__body .top-left-btn:hover, .modal__body .top-left-btn:hover { color:#fff !important; }
