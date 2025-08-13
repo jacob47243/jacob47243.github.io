@@ -1,0 +1,136 @@
+<!-- src/experience-pages/drone_ml/index.html -->
+<section id="exp-drone-ml" class="project-detail" data-base="/src/experience-pages/drone_ml/">
+    <style>
+      #exp-drone-ml{ color:#e8e9ea; }
+      #exp-drone-ml .grid{ display:grid; gap:16px; grid-template-columns:1fr; }
+      #exp-drone-ml h2{ margin:6px 0 4px; font-size:22px; }
+      #exp-drone-ml h3{ margin:10px 0 6px; font-size:16px; color:#a0a3a7; }
+      #exp-drone-ml p{ margin:0 0 10px; }
+      #exp-drone-ml ul{ margin:6px 0 12px; padding-left:18px; }
+      #exp-drone-ml li{ margin:4px 0; }
+  
+      .card{
+        background:#121315; border:1px solid rgba(255,255,255,.08);
+        border-radius:14px; padding:16px;
+      }
+  
+      .media{ display:grid; gap:12px; }
+      .frame{
+        position:relative; border:1px solid rgba(20,184,166,.35); border-radius:12px;
+        background:#0f1113; box-shadow:0 12px 40px rgba(0,0,0,.35);
+        overflow:hidden;
+      }
+      .frame.video{ aspect-ratio:16/9; min-height:220px; }
+      .frame.slides{ aspect-ratio:16/10; min-height:340px; }
+      .frame iframe, .frame video{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  
+      /* Images: two-up grid on desktop, single column on mobile */
+      .img-grid{ display:grid; gap:12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      @media (max-width: 800px){
+        .img-grid{ grid-template-columns: 1fr; }
+      }
+      .img-grid .img-wrap{
+        border:1px solid rgba(20,184,166,.35); border-radius:12px;
+        background:#0f1113; box-shadow:0 12px 40px rgba(0,0,0,.35);
+        padding:10px;
+      }
+      .img-grid img{ display:block; width:100%; height:auto; object-fit:contain; }
+  
+      .btn-row{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+      .btn{
+        display:inline-block; padding:8px 12px; border-radius:10px; font-weight:700;
+        border:1px solid rgba(255,255,255,.15); background:var(--accent,#14b8a6);
+        text-decoration:none;
+      }
+  
+      .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    </style>
+  
+    <!-- Standard title + caption -->
+    <header class="card">
+      <h2>Drone ML — Data-Driven Flow Sensing</h2>
+      <p>
+        Estimate local airflow angles (<em>α</em>, <em>β</em>) from pressure sensors on a fixed-wing drone for real-time control.
+        I built the data pipeline, calibration, and regressors, plus dense evaluations & plots.
+      </p>
+    </header>
+  
+    <!-- 1) Demo video -->
+    <section class="card media">
+      <h3>Demo</h3>
+      <div class="frame video">
+        <video controls playsinline preload="metadata" data-asset="drone_ml_demo.mp4"></video>
+      </div>
+    </section>
+  
+    <!-- 2) Images (side-by-side) -->
+    <section class="card">
+      <h3>Validation Plots</h3>
+      <div class="img-grid">
+        <figure class="img-wrap">
+          <img alt="Flow vector Euler angles — validation set 10" data-asset="drone_ml_flow_angles_10.png">
+          <figcaption class="muted">Validation set “10”: predicted vs. ground truth across α/β; color = dynamic pressure.</figcaption>
+        </figure>
+        <figure class="img-wrap">
+          <img alt="Flow vector Euler angles — validation set 25" data-asset="drone_ml_flow_angles_25.png">
+          <figcaption class="muted">Validation set “25”: lower MSE after calibration and tuning.</figcaption>
+        </figure>
+      </div>
+    </section>
+  
+    <!-- 3) PPTX display (Office viewer) -->
+    <section class="card media">
+      <h3>Slides</h3>
+      <div class="frame slides">
+        <iframe data-office-src="drone_ml_slides.pptx" title="Drone ML Slides (Office viewer)"></iframe>
+      </div>
+      <div class="btn-row">
+        <a class="btn" data-asset="drone_ml_slides.pptx" href="#" download>Download PPTX</a>
+      </div>
+    </section>
+  
+    <!-- (moved) 4) Paper: right below PPTX -->
+    <section class="card">
+      <h3>Paper</h3>
+      <p class="muted">Full write-up with methods, calibration, and error analysis.</p>
+      <div class="btn-row">
+        <a class="btn" data-asset="drone_ml_report.pdf" href="#" target="_blank" rel="noopener">View PDF</a>
+        <a class="btn" data-asset="drone_ml_report.pdf" href="#" download>Download PDF</a>
+      </div>
+    </section>
+  
+    <!-- 5) Rest of the information -->
+    <section class="card">
+      <h3>Approach</h3>
+      <ul>
+        <li>Sensor calibration and normalization by dynamic pressure to stabilize across regimes.</li>
+        <li>Feature engineering → trained regressors for <em>α</em>, <em>β</em> with cross-validation.</li>
+        <li>Dense α/β grid evaluation to catch bias bands and drift; iterative tuning.</li>
+      </ul>
+    </section>
+  
+    <section class="card">
+      <h3>Results &amp; Takeaways</h3>
+      <ul>
+        <li>Representative validation errors ~<strong>MSE ≈ 0.8–2.0 deg²</strong> depending on operating point (see plots).</li>
+        <li>Calibrated pipeline (ingest → calibrate → train → validate → export) is ready for onboard inference.</li>
+        <li>Next: fuse IMU/GPS, extend to full flight envelope, and harden for real-time deployment.</li>
+      </ul>
+    </section>
+  
+    <section class="card">
+      <h3>Tools</h3>
+      <div class="tags">
+        <span class="tag">Aero Sensing</span>
+        <span class="tag">Regression</span>
+        <span class="tag">Calibration</span>
+        <span class="tag">Python</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">Matplotlib</span>
+        <span class="tag">Data Pipelines</span>
+        <span class="tag">Model Evaluation</span>
+      </div>
+    </section>
+  </section>
+  

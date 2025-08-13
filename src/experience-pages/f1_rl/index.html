@@ -1,0 +1,137 @@
+<!-- src/experience-pages/f1_rl/index.html -->
+<section id="exp-f1rl" class="project-detail" data-base="/src/experience-pages/f1_rl/">
+    <style>
+      #exp-f1rl { color:#e8e9ea; }
+      #exp-f1rl .grid{ display:grid; gap:16px; grid-template-columns:1fr; }
+      #exp-f1rl h2{ margin:6px 0 4px; font-size:22px; }
+      #exp-f1rl h3{ margin:10px 0 6px; font-size:16px; color:#a0a3a7; }
+      #exp-f1rl p{ margin:0 0 10px; }
+      #exp-f1rl ul{ margin:6px 0 12px; padding-left:18px; }
+      #exp-f1rl li{ margin:4px 0; }
+  
+      .card{
+        background:#121315; border:1px solid rgba(255,255,255,.08);
+        border-radius:14px; padding:16px;
+      }
+  
+      .media{ display:grid; gap:12px; }
+      .frame{
+        position:relative; border:1px solid rgba(20,184,166,.35); border-radius:12px;
+        background:#0f1113; box-shadow:0 12px 40px rgba(0,0,0,.35);
+        overflow:hidden; aspect-ratio:16/9; min-height:220px;
+      }
+      .frame video, .frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  
+      /* Image frame: contain so diagrams aren’t cropped */
+      .frame--image{ aspect-ratio:auto; min-height:auto; }
+      .frame--image img{
+        display:block; width:100%; height:auto; object-fit:contain;
+        border:0;
+      }
+  
+      .btn-row{ display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
+      .btn{
+        display:inline-block; padding:8px 12px; border-radius:10px; font-weight:700;
+        border:1px solid rgba(255,255,255,.15); background: var(--accent, #14b8a6);
+        text-decoration:none;
+      }
+  
+      .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    </style>
+  
+    <!-- Title & kicker -->
+    <header class="card">
+      <h2>F1 RL Planner — Vision-Based Asymmetric SAC</h2>
+      <p>
+        High-speed autonomous racing with an actor that drives from pixels only and a critic
+        trained with privileged state. We experiment with CNN and DINO vision encoders,
+        train in Trackmania/TMRL, and compare against a symmetric SAC baseline.
+      </p>
+    </header>
+  
+    <!-- 1) Demo video -->
+    <section class="card media">
+      <h3>Demo Video</h3>
+      <div class="frame">
+        <video data-asset="f1_rl_demo.mp4" controls playsinline preload="metadata"></video>
+      </div>
+  
+      <div class="btn-row">
+        <a class="btn btn--darktext" data-asset="f1_rl_demo.mp4" download>Download MP4</a>
+        <a class="btn btn--darktext" data-asset="f1_rl_report.pdf" target="_blank" rel="noopener">View Paper (PDF)</a>
+        <a class="btn btn--darktext" data-asset="f1_rl_report.pdf" download>Download Paper</a>
+      </div>
+    </section>
+  
+    <!-- 2) Diagram -->
+    <section class="card media">
+      <h3>Architecture Diagram</h3>
+      <div class="frame frame--image">
+        <img data-asset="f1_rl_diagram.png" alt="F1 RL Asymmetric SAC architecture diagram">
+      </div>
+    </section>
+  
+    <!-- 3) Overview / Method / Results -->
+    <section class="card">
+      <h3>Overview</h3>
+      <ul>
+        <li><strong>Goal:</strong> robust, fast decision-making for racing without relying on noisy state sensors.</li>
+        <li><strong>Approach:</strong> Asymmetric Soft Actor-Critic (ASAC): actor uses only vision; critic trains with vision + privileged state.</li>
+        <li><strong>Env:</strong> Trackmania via TMRL; grayscale screenshot history + vehicle state for training.</li>
+      </ul>
+    </section>
+  
+    <section class="grid">
+      <article class="card">
+        <h3>Architecture</h3>
+        <ul>
+          <li><strong>Baseline SAC:</strong> actor & critic both see vision + state.</li>
+          <li><strong>ASAC:</strong> actor sees pixels only; critic gets privileged state during training for better targets.</li>
+          <li><strong>Vision encoders:</strong> CNN baseline; swapped with <strong>DINO</strong> (frozen) for richer features.</li>
+        </ul>
+      </article>
+  
+      <article class="card">
+        <h3>Training & Reward</h3>
+        <ul>
+          <li>Replay buffer with screenshot history to infer motion cues.</li>
+          <li>Reward = checkpoint progress (+) and collision penalty (–); encourages clipping apex and avoiding walls.</li>
+        </ul>
+      </article>
+  
+      <article class="card">
+        <h3>Results (high level)</h3>
+        <ul>
+          <li>ASAC reaches rewards comparable to state-dependent SAC while using pixels only.</li>
+          <li>DINO + ASAC accelerates late-stage learning by leveraging semantic cues.</li>
+        </ul>
+        <p class="muted">See the paper for full curves and ablations.</p>
+      </article>
+  
+      <article class="card">
+        <h3>What’s Next</h3>
+        <ul>
+          <li>Stabilize feature usage with attention/feature-map visualization.</li>
+          <li>Transition to more realistic sims and scaled RC deployment.</li>
+        </ul>
+      </article>
+    </section>
+  
+    <!-- 4) Tools / Skills -->
+    <section class="card">
+      <h3>Tools</h3>
+      <div class="tags">
+        <span class="tag">Reinforcement Learning</span>
+        <span class="tag">SAC / ASAC</span>
+        <span class="tag">Computer Vision</span>
+        <span class="tag">DINO</span>
+        <span class="tag">CNNs</span>
+        <span class="tag">PyTorch</span>
+        <span class="tag">TMRL</span>
+        <span class="tag">Trackmania</span>
+        <span class="tag">Reward Design</span>
+        <span class="tag">Real-time</span>
+      </div>
+    </section>
+  </section>
+  

@@ -1,0 +1,120 @@
+<section id="project-dynamicrrt" class="project-detail" data-base="/src/project-pages/dynamic_rrt/">
+    <style>
+      #project-dynamicrrt { color:#e8e9ea; }
+      #project-dynamicrrt .grid{ display:grid; gap:16px; grid-template-columns:1fr; }
+      #project-dynamicrrt h2{ margin:6px 0 4px; font-size:22px; }
+      #project-dynamicrrt h3{ margin:10px 0 6px; font-size:16px; color:#a0a3a7; }
+      #project-dynamicrrt p{ margin:0 0 10px; }
+      #project-dynamicrrt ul{ margin:6px 0 12px; padding-left:18px; }
+      #project-dynamicrrt li{ margin:4px 0; }
+  
+      .card{
+        background:#121315; border:1px solid rgba(255,255,255,.08);
+        border-radius:14px; padding:16px;
+      }
+  
+      .media{ display:grid; gap:12px; }
+      .frame{
+        position:relative; border:1px solid rgba(20,184,166,.35); border-radius:12px;
+        background:#0f1113; box-shadow:0 12px 40px rgba(0,0,0,.35);
+        overflow:hidden; aspect-ratio:16/9; min-height:220px;
+      }
+      .frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  
+      .btn-row{ display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
+      /* Button visuals rely on global .project-detail .btn (black text → white on hover) */
+      .btn{
+        display:inline-block; padding:8px 12px; border-radius:10px; font-weight:700;
+        border:1px solid rgba(255,255,255,.15); background: var(--accent, #14b8a6);
+        text-decoration:none;
+      }
+  
+      .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    </style>
+  
+    <header class="card">
+      <h2>Dynamic RRT Algorithms</h2>
+      <p>
+        A comparison of dynamic path-planning variants that replan in real time as new obstacles appear, including
+        Dynamic RRT*, RRT*-FND, Dual-Tree RRT*, Density-Based Dual-Tree RRT*, and Bidirectional RRT*.
+        We evaluate convergence time, path length, node count, and number of replans across multiple maps.
+      </p>
+    </header>
+  
+    <section class="card media">
+      <h3>Demo Video</h3>
+  
+      <div class="frame">
+        <iframe
+          src="https://drive.google.com/file/d/1bDlIh0O0x-tN4AE2MLtoGXVXcQs6hW3d/preview"
+          allow="autoplay; fullscreen"
+          title="Dynamic RRT — Google Drive Preview">
+        </iframe>
+      </div>
+  
+      <div class="btn-row">
+        <a class="btn btn--darktext"
+           href="https://drive.google.com/file/d/1bDlIh0O0x-tN4AE2MLtoGXVXcQs6hW3d/view?usp=sharing"
+           target="_blank" rel="noopener">Open Drive Video</a>
+  
+        <!-- NEW: Open local PDF report (resolved by hydrateProjectAssets) -->
+        <a class="btn btn--darktext"
+           data-asset="dynamic_rrt_report.pdf"
+           href="#"
+           target="_blank" rel="noopener">Open Report (PDF)</a>
+      </div>
+    </section>
+  
+    <section class="grid">
+      <article class="card">
+        <h3>Dynamic RRT*</h3>
+        <p>Retains useful portions of the tree and replans only from the last collision-free node when new obstacles are discovered—faster than rebuilding from scratch.</p>
+      </article>
+  
+      <article class="card">
+        <h3>RRT*-FND (Fixed-Node Dynamic)</h3>
+        <p>Trims only invalid edges, reconnects existing nodes, and maintains a fixed node budget by pruning least-useful leaves—reduces overhead and memory growth.</p>
+      </article>
+  
+      <article class="card">
+        <h3>Dual-Tree RRT*</h3>
+        <p>Grows two trees from start and goal; on collision, switches which side grows and aims the active tree toward the last safe node of the other.</p>
+      </article>
+  
+      <article class="card">
+        <h3>Density-Based Dual-Tree RRT*</h3>
+        <p>Selects the sparser of the two trees to grow after collisions to encourage uniform exploration and avoid wasted work in already dense regions.</p>
+      </article>
+  
+      <article class="card">
+        <h3>Bidirectional RRT*</h3>
+        <p>Expands both trees every iteration and favors connections between them—often the fastest to converge in cluttered spaces.</p>
+      </article>
+    </section>
+  
+    <section class="card">
+      <h3>Results (high level)</h3>
+      <ul>
+        <li><strong>Bidirectional RRT*</strong> typically showed the lowest convergence time by growing two trees concurrently.</li>
+        <li><strong>Dual-Tree & Density-Based Dual-Tree</strong> often produced shorter paths than the baseline naive approach, thanks to richer coverage near obstacles.</li>
+        <li><strong>Naive RRT</strong> had the longest paths on average, since it replans from scratch and tends to avoid tight corridors around new obstacles.</li>
+      </ul>
+      <p class="muted">See tables/plots in the report for per-map metrics and comparisons.</p>
+    </section>
+  
+    <section class="card">
+      <h3>Tools</h3>
+      <div class="tags">
+        <span class="tag">Path Planning</span>
+        <span class="tag">RRT*</span>
+        <span class="tag">Dynamic Replanning</span>
+        <span class="tag">Bidirectional Trees</span>
+        <span class="tag">Collision Checking</span>
+        <span class="tag">Graph Rewiring</span>
+        <span class="tag">Real-Time</span>
+        <span class="tag">Python</span>
+        <span class="tag">Matplotlib / Analysis</span>
+      </div>
+    </section>
+  </section>
+  

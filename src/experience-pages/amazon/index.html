@@ -1,0 +1,83 @@
+<section id="exp-amazon" class="project-detail">
+    <style>
+      #exp-amazon { color:#e8e9ea; }
+      #exp-amazon .grid{ display:grid; gap:16px; grid-template-columns:1fr; }
+      #exp-amazon h2{ margin:6px 0 4px; font-size:22px; }
+      #exp-amazon h3{ margin:10px 0 6px; font-size:16px; color:#a0a3a7; }
+      #exp-amazon p{ margin:0 0 10px; }
+      #exp-amazon ul{ margin:6px 0 12px; padding-left:18px; }
+      #exp-amazon li{ margin:4px 0; }
+  
+      .card{
+        background:#121315; border:1px solid rgba(255,255,255,.08);
+        border-radius:14px; padding:16px;
+      }
+  
+      .meta{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+      .tag{
+        display:inline-block; padding:4px 10px; border-radius:999px;
+        background:rgba(20,184,166,.10); color:#93f4e5;
+        border:1px solid rgba(20,184,166,.35); font-size:12px;
+      }
+  
+      .tags{ display:flex; flex-wrap:wrap; gap:8px; }
+    </style>
+  
+    <header class="card">
+      <h2>Amazon — Software Development Intern</h2>
+      <p>
+        Built reliability and automation for the Pentesters Tools team by making findings ingestion fully
+        accurate, fixing SQL escaping issues, and adding a clustering-based generative workflow that
+        auto-creates high-quality templates from recurring findings.
+      </p>
+      <div class="meta">
+        <span class="tag">Austin, Texas</span>
+        <span class="tag">July–September 2025</span>
+        <span class="tag">Pentesters Tools</span>
+      </div>
+    </header>
+  
+    <section class="grid">
+      <article class="card">
+        <h3>Key Projects</h3>
+        <ul>
+          <li><strong>Findings Template Parser → Site Updater:</strong> Implemented a robust parser that extracts sections from pentest findings templates and automatically updates the website. Achieved <strong>100% parsing accuracy</strong> (previously failed often enough that the process was effectively manual).</li>
+          <li><strong>SQL Escaping / Data Integrity:</strong> Fixed escaping issues that occasionally corrupted rendered findings or broke queries.</li>
+          <li><strong>Gen-AI + BIRCH Clustering:</strong> Service that clusters hundreds of weekly findings into coherent groups using <strong>BIRCH</strong>, then <em>auto-generates draft templates</em> from the common structures to improve consistency and speed.</li>
+        </ul>
+      </article>
+  
+      <article class="card">
+        <h3>Impact</h3>
+        <ul>
+          <li><strong>Saved ~10 hours/week</strong> for the internal team that previously hand-fixed broken parses.</li>
+          <li><strong>Reliability:</strong> Findings now render correctly and consistently on the site.</li>
+          <li><strong>Template Quality & Throughput:</strong> Better, more uniform templates reduce pentesters’ overhead and improve published output quality.</li>
+        </ul>
+      </article>
+  
+      <article class="card">
+        <h3>Challenges</h3>
+        <ul>
+          <li>Handling edge-case formatting and malformed inputs without human intervention.</li>
+          <li>Maintaining safe SQL handling while preserving rich content fidelity.</li>
+          <li>Tuning BIRCH thresholds so clusters reflected real semantic similarity across diverse findings.</li>
+        </ul>
+      </article>
+  
+      <article class="card">
+        <h3>Tech Highlights</h3>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Parsing / Regex</span>
+          <span class="tag">ETL / Data Pipelines</span>
+          <span class="tag">SQL</span>
+          <span class="tag">scikit-learn (BIRCH)</span>
+          <span class="tag">Generative AI</span>
+          <span class="tag">Prompting / Template Gen</span>
+          <span class="tag">Backend Reliability</span>
+        </div>
+      </article>
+    </section>
+  </section>
+  

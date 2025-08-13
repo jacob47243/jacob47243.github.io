@@ -1,0 +1,107 @@
+<!-- src/experience-pages/robotic_fish/index.html -->
+<section id="exp-robotic-fish" class="exp-detail" data-base="/src/experience-pages/robotic_fish/">
+    <style>
+      #exp-robotic-fish { color:#e8e9ea; }
+      #exp-robotic-fish .grid{ display:grid; gap:16px; grid-template-columns:1fr; }
+      #exp-robotic-fish h2{ margin:6px 0 4px; font-size:22px; }
+      #exp-robotic-fish h3{ margin:10px 0 6px; font-size:16px; color:#a0a3a7; }
+      #exp-robotic-fish p{ margin:0 0 10px; }
+      #exp-robotic-fish ul{ margin:6px 0 12px; padding-left:18px; }
+      #exp-robotic-fish li{ margin:4px 0; }
+  
+      .card{
+        background:#121315; border:1px solid rgba(255,255,255,.08);
+        border-radius:14px; padding:16px;
+      }
+  
+      .media{ display:grid; gap:12px; }
+      .frame{
+        position:relative; border:1px solid rgba(20,184,166,.35); border-radius:12px;
+        background:#0f1113; box-shadow:0 12px 40px rgba(0,0,0,.35);
+        overflow:hidden; aspect-ratio:16/9; min-height:220px;
+      }
+      .frame video{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  
+      .btn-row{ display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
+      /* Buttons inherit your global “black text → white on hover” rules in the modal/drawer */
+      .btn{
+        display:inline-block; padding:8px 12px; border-radius:10px; font-weight:700;
+        border:1px solid rgba(255,255,255,.15); background: var(--accent, #14b8a6);
+        text-decoration:none;
+      }
+  
+      .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    </style>
+  
+    <header class="card">
+      <h2>Robotic Fish — Bio-Inspired Underwater Propulsion</h2>
+      <p>
+        Built a biomimetic fin propulsor that achieves large-angle fin tilts via a swash-plate
+        mechanism and universal joint, driven by a high-torque AK60-6 motor. Control is split
+        across Arduinos (servos and central motor) with CAN/UART comms; trajectories are
+        generated in MATLAB and sent as joint targets. Goal: efficient, collinear-flow
+        propulsion with future ML-optimized fin trajectories.
+      </p>
+    </header>
+  
+    <section class="card media">
+      <h3>Demo Video</h3>
+      <div class="frame">
+        <!-- Home.js will hydrate the src from data-asset -->
+        <video id="robotic-fish-demo" controls preload="metadata" playsinline data-asset="robotic_fish_demo.mp4"></video>
+      </div>
+  
+      <div class="btn-row">
+        <!-- Both of these hrefs are hydrated by home.js from data-asset -->
+        <a class="btn btn--darktext" href="#" target="_blank" rel="noopener" data-asset="robot_fish_paper.pdf">View Paper (PDF)</a>
+        <a class="btn btn--darktext" href="#" download data-asset="robot_fish_paper.pdf">Download Paper (PDF)</a>
+      </div>
+    </section>
+  
+    <section class="grid">
+      <article class="card">
+        <h3>Mechanism & Build</h3>
+        <ul>
+          <li>Swash-plate + ball-and-socket universal joint to transmit rotation while allowing ~30° fin tilt.</li>
+          <li>Motor moved behind the swash plate; shafts route through the baseplate to the joint.</li>
+          <li>3D-printed swash-plate arms and adapter parts for manufacturability and sealing.</li>
+        </ul>
+      </article>
+  
+      <article class="card">
+        <h3>Actuation & Control</h3>
+        <ul>
+          <li>AK60-6 for central drive; servos for swash-plate actuation.</li>
+          <li>CAN bus comms to the motor; MATLAB → Arduino pipeline for trajectories and IK.</li>
+          <li>Two-MCU architecture to avoid comms interference (servos vs. central motor).</li>
+        </ul>
+      </article>
+  
+      <article class="card">
+        <h3>Testing & Next Steps</h3>
+        <ul>
+          <li>Validated kinematics and control on the bench; prepared watertight nose with o-ring seal.</li>
+          <li>Plan: underwater testing, integrate external force sensor, and use ML to optimize fin trajectories.</li>
+        </ul>
+      </article>
+    </section>
+  
+    <section class="card">
+      <h3>Tools & Topics</h3>
+      <div class="tags">
+        <span class="tag">Biomimetic Robotics</span>
+        <span class="tag">Swash Plate</span>
+        <span class="tag">Universal Joint</span>
+        <span class="tag">Arduino</span>
+        <span class="tag">CAN Bus</span>
+        <span class="tag">Servo Control</span>
+        <span class="tag">AK60-6</span>
+        <span class="tag">MATLAB</span>
+        <span class="tag">Reverse Kinematics</span>
+        <span class="tag">3D Printing</span>
+        <span class="tag">Hydrodynamics</span>
+        <span class="tag">Trajectory Optimization</span>
+      </div>
+    </section>
+  </section>
+  
